@@ -1,0 +1,21 @@
+<h1>{{ title }}</h1>
+<div class="col">
+  <div class="mat-form-field-container">
+    <h3>Escolha o Documento:</h3>
+    <button type="button" (click)="onChooseFile()">Escolha o arquivo</button>
+    <input hidden (change)="oFileSelected($event)" #fileInput type="file">
+    <span class="field-name">{{ oFileSelected?.name }}</span>
+  </div>
+
+  <div class="file-previewer-container">
+    <img *ngIf="isFileImage" [src]="selectedFilePath" height="200">
+    <ngx-extended-pdf-viewer
+      *ngIf="isFileDocument"
+      [base64Src]="selectedFileB64"
+      backgroundColor="#ffffff"
+      height="90vh"
+      [handTool]="false"
+      [showHandToolButton]="true">
+    </ngx-extended-pdf-viewer>
+  </div>
+</div>
